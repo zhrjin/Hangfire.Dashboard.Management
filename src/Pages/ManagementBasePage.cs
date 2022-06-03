@@ -514,20 +514,20 @@ namespace Hangfire.Dashboard.Management.v2.Pages
 			WriteLiteral($@"
 				<div class=""btn-group col-xs-12 col-sm-3"">
 					<button class=""btn btn-default dropdown-toggle"" type=""button"" id=""dropdownMenu1"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false"">
-						Task type: <span class=""{id} commandsType"">Immediate</span>
+						任务类型: <span class=""{id} commandsType"">列队执行</span>
 						<span class=""caret""></span>
 					</button>
 					<ul class=""dropdown-menu"" aria-labelledby=""dropdownMenu1"">
-						<li><a href=""javascript:void(0)"" class=""commands-type"" data-commands-type=""Enqueue"" data-id=""{id}"">Immediate</a></li>
-						<li><a href=""javascript:void(0)"" class=""commands-type"" data-commands-type=""ScheduleDateTime"" data-id=""{id}"">Scheduled</a></li>
-						<li><a href=""javascript:void(0)"" class=""commands-type"" data-commands-type=""ScheduleTimeSpan"" data-id=""{id}"">Delayed</a></li>
-						<li><a href=""javascript:void(0)"" class=""commands-type"" data-commands-type=""CronExpression"" data-id=""{id}"">Repeating</a></li>
+						<li><a href=""javascript:void(0)"" class=""commands-type"" data-commands-type=""Enqueue"" data-id=""{id}"">列队执行</a></li>
+						<li><a href=""javascript:void(0)"" class=""commands-type"" data-commands-type=""ScheduleDateTime"" data-id=""{id}"">定时执行</a></li>
+						<li><a href=""javascript:void(0)"" class=""commands-type"" data-commands-type=""ScheduleTimeSpan"" data-id=""{id}"">延时执行</a></li>
+						<li><a href=""javascript:void(0)"" class=""commands-type"" data-commands-type=""CronExpression"" data-id=""{id}"">重复执行</a></li>
 					</ul>
 				</div>
 				<div class=""commands-panel col-xs-12 Enqueue col-sm-9"">
 					<button class=""js-management-input-commands btn btn-sm btn-success"" data-url=""{Url.To(url)}"" data-loading-text=""{loadingText}"" input-id=""{id}"" input-type=""Enqueue"">
 						<span class=""glyphicon glyphicon-play-circle""></span>
-						&nbsp;Queue Execution
+						&nbsp;列队执行
 					</button>
 				</div>
 				<div class=""commands-options ScheduleDateTime col-xs-12 col-sm-6"" style=""display:none;"">
@@ -541,7 +541,7 @@ namespace Hangfire.Dashboard.Management.v2.Pages
 				<div class=""commands-panel ScheduleDateTime col-xs-12 col-sm-3"" style=""display:none;"">
 					<button class=""btn btn-default btn-sm btn-primary js-management-input-commands"" type=""button"" input-id=""{id}"" input-type=""ScheduleDateTime"" data-url=""{Url.To(url)}"" data-loading-text=""{loadingText}"">
 						<span class=""glyphicon glyphicon-calendar""></span>
-						&nbsp;Schedule Execution
+						&nbsp;定时执行
 					</button>
 				</div>
 				<div class=""commands-options ScheduleTimeSpan col-xs-12 col-sm-6"" style=""display:none;"">
@@ -552,7 +552,7 @@ namespace Hangfire.Dashboard.Management.v2.Pages
 						<button class=""btn btn-default btn-sm btn-info js-management-input-commands"" type=""button"" input-id=""{id}"" input-type=""ScheduleTimeSpan""
 								data-url=""{Url.To(url)}"" data-loading-text=""{loadingText}"">
 							<span class=""glyphicon glyphicon-time""></span>
-							&nbsp;Delayed Execution
+							&nbsp;延时执行
 						</button>
 						<button type=""button"" class=""btn btn-info btn-sm dropdown-toggle"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false"">
 							<span class=""caret""></span>
@@ -604,7 +604,7 @@ namespace Hangfire.Dashboard.Management.v2.Pages
 						<button class=""btn btn-default btn-sm btn-warning js-management-input-commands"" type=""button"" input-id=""{id}"" input-type=""CronExpression""
 								data-confirm=""If this job already has a schedule then it will be updated.  Continue?"" data-url=""{Url.To(url)}"" data-loading-text=""{loadingText}"">
 							<span class=""glyphicon glyphicon-repeat""></span>
-							&nbsp;Repeated Execution
+							&nbsp;重复执行
 						</button>
 						<button type=""button"" class=""btn btn-warning btn-sm dropdown-toggle"" data-toggle=""dropdown"" aria-haspopup=""true"" aria-expanded=""false"">
 							<span class=""caret""></span>

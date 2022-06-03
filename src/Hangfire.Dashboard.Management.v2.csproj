@@ -40,6 +40,7 @@
 		<None Remove="Content\inputmask_min.css" />
 		<None Remove="Content\Libraries\dateTimePicker\bootstrap-datetimepicker.min.css" />
 		<None Remove="Content\Libraries\dateTimePicker\bootstrap-datetimepicker.min.js" />
+		<None Remove="Content\Libraries\dateTimePicker\momentLocale.js" />
 		<None Remove="Content\Libraries\inputmask\jquery.inputmask.bundle.min.js" />
 		<None Remove="Content\management.css" />
 		<None Remove="Content\management.js" />

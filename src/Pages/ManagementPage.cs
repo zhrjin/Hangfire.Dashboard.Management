@@ -4,7 +4,7 @@ namespace Hangfire.Dashboard.Management.v2.Pages
 {
 	internal class ManagementPage : RazorPage
 	{
-		public const string Title = "Management";
+		public const string Title = "作业管理";
 		public const string UrlRoute = "/management";
 
 		public override void Execute()
@@ -23,7 +23,7 @@ namespace Hangfire.Dashboard.Management.v2.Pages
 		<div class=""col-md-9"">
 			<h1 class=""page-header mgmt-title"">{Title}</h1>
 			<div class=""visible-md-block visible-lg-block"">
-				Select a page from the menu on the left to see the jobs available.
+				从左侧菜单中选择可用的作业
 			</div>
 			<div class=""hidden-md hidden-lg"">
 				Select a page from the tabs at the top to see the jobs available.

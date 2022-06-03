@@ -7,7 +7,7 @@
         Management.prototype._initialize = function () {
 
             $("div[id$='_datetimepicker']").each(function () {
-                $(this).datetimepicker();
+				$(this).datetimepicker({ locale: 'zh-cn' });
             });
 
             $('input.time').inputmask();
