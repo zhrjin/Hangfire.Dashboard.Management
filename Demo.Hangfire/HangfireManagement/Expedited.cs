@@ -8,12 +8,12 @@ using System.ComponentModel;
 
 namespace Demo.Hangfire.HangfireManagement
 {
-	[ManagementPage(MenuName = "Expedited Jobs", Title = nameof(Expedited))]
+	[ManagementPage(MenuName = "ExpeditedJobs", Title = "测试测定")]
 	/*              A                            B                        */
 	public class Expedited : IJob
 	{
-		[DisplayName("Job Number 1")] //C
-		[Description("This is the description for Job Number 1")] //D
+		[DisplayName("EEEE")] //C
+		[Description("斯蒂芬斯蒂芬发士大夫")] //D
 		[Queue("expedited")]
 		[AllowMultiple]
 		public void Job1(PerformContext context, IJobCancellationToken token,

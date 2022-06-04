@@ -31,7 +31,7 @@ namespace Hangfire.Dashboard.Management.v2
 				if (!pageSet.Contains(pageInfo.MenuName))
 				{
 					pageSet.Add(pageInfo.MenuName);
-					ManagementSidebarMenu.Items.Add(p => new MenuItem(pageInfo.MenuName, p.Url.To($"{ManagementPage.UrlRoute}/{pageInfo.MenuName.ScrubURL()}")) {
+					ManagementSidebarMenu.Items.Add(p => new MenuItem(pageInfo.Title, p.Url.To($"{ManagementPage.UrlRoute}/{pageInfo.MenuName.ScrubURL()}")) {
 						Active = p.RequestPath.StartsWith($"{ManagementPage.UrlRoute}/{pageInfo.MenuName.ScrubURL()}")
 					});
 				}

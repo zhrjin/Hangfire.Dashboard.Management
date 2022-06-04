@@ -33,7 +33,6 @@ namespace Hangfire.Dashboard.Management.v2.Pages
 
 			foreach (var jobMetadata in jobs)
 			{
-
 				var route = $"{ManagementPage.UrlRoute}/{jobMetadata.JobId.ScrubURL()}";
 
 				DashboardRoutes.Routes.Add(route, new CommandWithResponseDispatcher(context => {
@@ -71,7 +70,7 @@ namespace Hangfire.Dashboard.Management.v2.Pages
 							variable = $"{variable}_datetimepicker";
 						}
 
-						variable = variable.Trim('_');
+						//variable = variable.Trim('_');
 						var formInput = GetFormVariable(variable);
 
 						object item = null;
@@ -396,7 +395,7 @@ namespace Hangfire.Dashboard.Management.v2.Pages
 	<div class=""panel panel-info js-management card"" data-id=""{id}"" style=""{(expanded ? "margin-top:20px" : "")}"">
 		<div id=""heading_{id}"" class=""panel-heading card-header {(expanded ? "" : "collapsed")}collapsed"" role=""button"" data-toggle=""collapse"" data-parent=""#accordion"" href=""#collapse_{id}"" aria-expanded=""{(expanded ? "true" : "false")}"" aria-controls=""collapse_{id}"">
 			<h4 class=""panel-title"">
-				{job.Name}
+				{job.MethodName}
 			</h4>
 		</div>
 		<div id=""collapse_{id}"" class=""panel-collapse {(expanded ? "collapse in" : "collapse")}"" aria-expanded=""{(expanded ? "true" : "false")}"" aria-labelledby=""heading_{id}"" data-parent=""#jobsAccordion"">
@@ -602,7 +601,7 @@ namespace Hangfire.Dashboard.Management.v2.Pages
 				<div class=""commands-panel CronExpression col-xs-12 col-sm-4"" style=""display:none;"">
 					<div class=""btn-group"">
 						<button class=""btn btn-default btn-sm btn-warning js-management-input-commands"" type=""button"" input-id=""{id}"" input-type=""CronExpression""
-								data-confirm=""If this job already has a schedule then it will be updated.  Continue?"" data-url=""{Url.To(url)}"" data-loading-text=""{loadingText}"">
+								data-confirm=""如果此作业已经有计划，则将更新，是否提交?"" data-url=""{Url.To(url)}"" data-loading-text=""{loadingText}"">
 							<span class=""glyphicon glyphicon-repeat""></span>
 							&nbsp;重复执行
 						</button>
@@ -612,19 +611,19 @@ namespace Hangfire.Dashboard.Management.v2.Pages
 						<ul class=""dropdown-menu dropdown-menu-right"">
 ");
 			var cronItems = new Dictionary<string, string>() {
-							{ "Every Minute", Cron.Minutely() },
-							{ "Hourly", Cron.Hourly() },
-							{ "Daily", Cron.Daily() },
-							{ "Weekly", Cron.Weekly() },
-							{ "Monthly", Cron.Monthly() },
-							{ "Annually", Cron.Yearly() }
+							{ "每分钟", Cron.Minutely() },
+							{ "每小时", Cron.Hourly() },
+							{ "每天", Cron.Daily() },
+							{ "每周", Cron.Weekly() },
+							{ "每月", Cron.Monthly() },
+							{ "每年", Cron.Yearly() }
 						};
 			foreach (var o in cronItems)
 			{
 				WriteLiteral($@"
 								<li>
 									<a href=""#"" class=""js-management-input-commands text-right"" input-id=""{id}"" input-type=""CronExpression"" schedule=""{o.Value}""
-										data-confirm=""If this job already has a schedule then it will be updated.  Continue?"" data-url=""{Url.To(url)}"" data-loading-text=""{loadingText}"">
+										data-confirm=""如果此作业已经有计划，则将更新，是否提交?"" data-url=""{Url.To(url)}"" data-loading-text=""{loadingText}"">
 										{o.Key}: <span>({o.Value})</span>
 									</a>
 								</li>

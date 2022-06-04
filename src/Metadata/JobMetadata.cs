@@ -16,8 +16,9 @@ namespace Hangfire.Dashboard.Management.v2.Metadata
 		public Type Type { get; set; }
 		public MethodInfo MethodInfo { get; set; }
 
-		public string MethodName => Type.Name + "_" + MethodInfo.Name;
+		public string MethodName => $"{DisplayName ?? (Type.Name + "_" + MethodInfo.Name)}";
 		public string JobId => $"{MenuName}/{Name.ScrubURL()}";
-		public string Name => $"{DisplayName ?? MethodName}";
+		public string Name => Type.Name + "_" + MethodInfo.Name;
+
 	}
 }
