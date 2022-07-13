@@ -229,11 +229,11 @@ var Type = {
  */
 var TimeObject = [
 
-    //{
-    //    radioName: "secondType",
-    //    min: 0,
-    //    max: 59
-    //},
+    {
+        radioName: "secondType",
+        min: 0,
+        max: 59
+    },
     {
         radioName: "minuteType",
         min: 0,

@@ -19,12 +19,12 @@
 	<div>
 		<!-- Nav tabs -->
 		<ul class=""nav nav-tabs"" role=""tablist"">
-<!--
+
 			<li role=""presentation"" class=""active"">
 				<a href=""#second"" aria-controls=""second"" role=""tab"" data-toggle=""tab"">秒</a>
 			</li>
--->
-			<li role=""presentation"" class=""active"">
+
+			<li role=""presentation"">
 				<a href=""#minute"" aria-controls=""minute"" role=""tab"" data-toggle=""tab"">分钟</a>
 			</li>
 			<li role=""presentation"">
@@ -54,7 +54,7 @@
 		<!-- Tab panes -->
 		<div class=""tab-content"">
 			<!--second-->
-			<!--<div role=""tabpanel"" class=""tab-pane active"" id=""second"">
+			<div role=""tabpanel"" class=""tab-pane active"" id=""second"">
 					<div class=""radio"">
 						<label>
 							<input type=""radio"" name=""secondType"" value=""All"" checked=""checked"">
@@ -91,9 +91,9 @@
 						<select id=""secondTypeAssigned_1"" data-placeholder=""选择指定的秒...""
 								style=""width:350px;"" multiple></select>
 					</div>
-				</div>-->
+				</div>
 			<!--minute-->
-			<div role=""tabpanel"" class=""tab-pane active"" id=""minute"">
+			<div role=""tabpanel"" class=""tab-pane"" id=""minute"">
 				<div class=""radio"">
 					<label>
 						<input type=""radio"" name=""minuteType"" value=""All"" checked=""checked"">
