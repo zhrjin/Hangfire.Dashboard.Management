@@ -2,11 +2,13 @@
 using Hangfire.Dashboard.Management.v2.Support;
 using Hangfire.MemoryStorage;
 using Hangfire.Dashboard.Management.v2;
+using Hangfire.Dashboard;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 //builder.Services.AddRazorPages();
+
 
 var services = builder.Services;
 services.AddHangfire((configuration) =>
@@ -42,10 +44,13 @@ app.UseRouting();
 
 //app.MapRazorPages();
 
+
+
 app.UseHangfireDashboard("/hangfire", new DashboardOptions() {
 	DisplayStorageConnectionString = false,
 	DashboardTitle = "Hangfire Management",
 	StatsPollingInterval = 5000
 });
+
 
 app.Run();

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 using Hangfire.Dashboard.Management.v2.Pages;
@@ -24,6 +25,7 @@ namespace Hangfire.Dashboard.Management.v2
 
 		private static void CreateManagement()
 		{
+			GlobalConfigurationExtension.ReplaceCoreJs();
 			var pageSet = new List<string>();
 			foreach (var pageInfo in JobsHelper.Pages)
 			{
@@ -65,5 +67,79 @@ namespace Hangfire.Dashboard.Management.v2
 			});
 
 		}
+
+
+		public static void ReplaceCoreJs()
+		{
+			/*
+			 *  "jquery-3.6.0.min.js",
+            "bootstrap.min.js",
+            "moment-with-locales.min.js",
+            "Chart.min.js",
+            "chartjs-plugin-streaming.min.js",
+            "hangfire.js"
+			 */
+			DashboardRoutes.Routes.Replace($"/js[0-9]+",
+				new CombinedResourceDispatcher(
+					"application/javascript",
+					typeof(GlobalConfigurationExtension).GetTypeInfo().Assembly,
+					$"{typeof(GlobalConfigurationExtension).Namespace}.Content", new[] {
+						"Core.jquery-3.6.0.min.js",
+						"Core.bootstrap.min.js",
+						"Core.moment-with-locales.min.js",
+						"Core.Chart.min.js",
+						"Core.chartjs-plugin-streaming.min.js",
+						"Core.hangfire.js",
+						"Core.hf-mycore.js"
+					}
+					)
+				);
+		}
+
+		/// <summary>
+		/// Replaces exising dispatcher for <paramref name="pathTemplate"/> with <paramref name="dispatcher"/>.
+		/// If there's no dispatcher for the specified path, adds a new one.
+		/// </summary>
+		/// <param name="routes">Route collection</param>
+		/// <param name="pathTemplate">Path template</param>
+		/// <param name="dispatcher">Dispatcher to set for specified path</param>
+		public static void Replace(this RouteCollection routes, string pathTemplate, IDashboardDispatcher dispatcher)
+		{
+			if (routes == null)
+				throw new ArgumentNullException(nameof(routes));
+			if (pathTemplate == null)
+				throw new ArgumentNullException(nameof(pathTemplate));
+			if (dispatcher == null)
+				throw new ArgumentNullException(nameof(dispatcher));
+
+			var list = routes.GetDispatchers();
+
+			for (var i = 0; i < list.Count; i++)
+			{
+				var pair = list[i];
+				if (pair.Item1 == pathTemplate)
+				{
+					list[i] = new Tuple<string, IDashboardDispatcher>(pair.Item1, dispatcher);
+					return;
+				}
+			}
+
+			routes.Add(pathTemplate, dispatcher);
+		}
+
+		/// <summary>
+		/// Returns a private list of registered routes.
+		/// </summary>
+		/// <param name="routes">Route collection</param>
+		private static List<Tuple<string, IDashboardDispatcher>> GetDispatchers(this RouteCollection routes)
+		{
+			if (routes == null)
+				throw new ArgumentNullException(nameof(routes));
+
+			return (List<Tuple<string, IDashboardDispatcher>>)_dispatchers.GetValue(routes);
+		}
+
+		private static readonly FieldInfo _dispatchers = typeof(RouteCollection).GetTypeInfo().GetDeclaredField(nameof(_dispatchers));
+
 	}
 }
